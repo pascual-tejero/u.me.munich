@@ -1,9 +1,9 @@
+from pydantic import BaseModel
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from database import SessionLocal
 from models import SurveyResponse, User
 
-# Router for survey-related endpoints
 router = APIRouter()
 
 # Dependency to get the database session
@@ -14,23 +14,65 @@ def get_db():
     finally:
         db.close()
 
-@router.post("/")
-def submit_survey(question: str, answer: str, user_email: str, db: Session = Depends(get_db)):
+# Request model for survey
+class SurveyRequest(BaseModel):
+    indoor_outdoor: str  # "indoor" or "outdoor"
+    sport: bool = False
+    cooking: bool = False
+    music: bool = False
+    conversations: bool = False
+    reading: bool = False
+    traveling: bool = False
+
+@router.post("/survey/")
+def submit_survey(request: SurveyRequest, user_email: str, db: Session = Depends(get_db)):
+    # Check if user exists
     user = db.query(User).filter(User.email == user_email).first()
     if not user:
         raise HTTPException(status_code=400, detail="User not found")
 
-    survey_response = SurveyResponse(user_id=user.id, question=question, answer=answer)
+    # Prevent multiple survey submissions
+    if user.has_completed_survey:
+        raise HTTPException(status_code=400, detail="Survey already completed")
+
+    # Save survey response
+    survey_response = SurveyResponse(
+        user_id=user.id,
+        indoor_outdoor=request.indoor_outdoor,
+        sport=request.sport,
+        cooking=request.cooking,
+        music=request.music,
+        conversations=request.conversations,
+        reading=request.reading,
+        traveling=request.traveling,
+    )
     db.add(survey_response)
     db.commit()
-    db.refresh(survey_response)
+
+    # Mark survey as completed
+    user.has_completed_survey = True
+    db.commit()
+
     return {"message": "Survey submitted successfully"}
 
-@router.get("/")
+@router.get("/survey/{user_email}")
 def get_survey_responses(user_email: str, db: Session = Depends(get_db)):
+    # Check if user exists
     user = db.query(User).filter(User.email == user_email).first()
     if not user:
         raise HTTPException(status_code=400, detail="User not found")
 
-    responses = db.query(SurveyResponse).filter(SurveyResponse.user_id == user.id).all()
-    return {"responses": [{"question": r.question, "answer": r.answer} for r in responses]}
+    # Fetch survey response
+    survey = db.query(SurveyResponse).filter(SurveyResponse.user_id == user.id).first()
+    if not survey:
+        raise HTTPException(status_code=404, detail="Survey not found")
+
+    return {
+        "indoor_outdoor": survey.indoor_outdoor,
+        "sport": survey.sport,
+        "cooking": survey.cooking,
+        "music": survey.music,
+        "conversations": survey.conversations,
+        "reading": survey.reading,
+        "traveling": survey.traveling,
+    }
