@@ -2,6 +2,7 @@ from sqlalchemy import Column, Integer, String, Text, ForeignKey, Boolean
 from sqlalchemy.orm import relationship
 from database import Base
 
+
 class User(Base):
     __tablename__ = "users"
 
@@ -18,12 +19,14 @@ class SurveyResponse(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
-    indoor_outdoor = Column(String, nullable=False)  # indoor/outdoor
+    indoor = Column(Boolean, default=False)
+    outdoor = Column(Boolean, default=False)
     sport = Column(Boolean, default=False)
     cooking = Column(Boolean, default=False)
     music = Column(Boolean, default=False)
     conversations = Column(Boolean, default=False)
     reading = Column(Boolean, default=False)
     traveling = Column(Boolean, default=False)
+    other = Column(Boolean, default=False)
 
     user = relationship("User", back_populates="survey")

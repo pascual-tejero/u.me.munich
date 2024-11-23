@@ -38,4 +38,4 @@ survey:
     query parameter: user_email pascual@tej.ero
 
 To see the survey
-    http://127.0.0.1:8000/survey/pascual@tej.ero
+    http://127.0.0.1:8000/survey/pascual@tej.ero 
