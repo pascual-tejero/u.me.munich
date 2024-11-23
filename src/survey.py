@@ -141,19 +141,14 @@ def generate_recoms( user_email: str, db: Session = Depends(get_db)):
     if not preferences:
         survey.go_crazy = True 
         # return "You haven't provided any preferences. Please complete the survey."
-
-    # prompt = f"You are a creative recommendation assistant. Based on these preferences: {', '.join(preferences)}, suggest 3 fun, creative, and personalized activities. Be concise and helpful. If 'Other' is included, go wild!"
+        
 
     prompt = f"You are my bored-state killer that you act as a fun and creative activities recommendation assitance. Based on these preferences: {', '.join(preferences)}, suggest {len(preferences)} fun, creative, and personalized activities. 
     Be concise and helpful. Try to mix between the acitivites if possible. If go_crazy is included, go wild with the recommendations! if there are other activities along with go_crazy, make sure to go wild with them as well"    
 
     try:
-        
         model = genai.GenerativeModel()
-
         response = model.generate_content(prompt)
-        # generated_text = response.content
-        # return {"recommendations": generated_text}
         return response.text
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error generating recommendations: {str(e)}") 
