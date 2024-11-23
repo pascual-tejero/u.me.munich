@@ -3,11 +3,12 @@ import { RouteRecordRaw } from 'vue-router';
 import HomePage from '../views/HomePage.vue';
 import SurveyPage from '../views/SurveyPage.vue'; 
 import SurveyAnswerPage from '@/views/SurveyAnswerPage.vue';
+import SignUpPage from '../views/SignUpPage.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    redirect: '/home', // Redirect to homepage initially
+    redirect: '/home',
   },
   {
     path: '/home',
@@ -23,6 +24,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/surveyanswer',
     name: 'SurveyAnswer',
     component: SurveyAnswerPage, // Survey Answer Page
+  },
+  {
+    path: '/signup',
+    name: 'SignUp',
+    component: SignUpPage,
   },
 ];
 
