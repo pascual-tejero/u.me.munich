@@ -1,0 +1,39 @@
+register:
+http:127.0.0.1:8000/auth/register/ 
+    http header: Content-Type: application/json
+    json
+        {
+            "email": "pascual@tej.ero",
+            "password": "pas",
+            "confirm_password": "pas",
+            "full_name": "pascual"
+     }
+
+log in: 
+http:127.0.0.1:8000/auth/login/ 
+
+    http header: Content-Type: application/json
+    json
+        {
+            "email": "pascual@tej.ero",
+            "password": "pas"
+     }
+
+
+survey: 
+    http://127.0.0.1:8000/survey/?user_email=pascual@tej.ero
+    http header: Content-Type: application/json
+     {
+        "indoor_outdoor": "outdoor",
+        "sport": true,
+        "cooking": false,
+        "music": true,
+        "conversations": true,
+        "reading": false,
+        "traveling": true
+     }
+
+    query parameter: user_email pascual@tej.ero
+
+To see the survey
+    http://127.0.0.1:8000/survey/pascual@tej.ero
