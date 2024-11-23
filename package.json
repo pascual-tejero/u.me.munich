@@ -1,0 +1,19 @@
+{
+  "name": "me-u-munich",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/verren5/me-u-munich.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/verren5/me-u-munich/issues"
+  },
+  "homepage": "https://github.com/verren5/me-u-munich#readme"
+}
