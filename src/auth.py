@@ -1,3 +1,4 @@
+from pydantic import BaseModel
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from database import SessionLocal
@@ -35,8 +36,31 @@ def create_access_token(data: dict):
     to_encode.update({"exp": expire})
     return jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
 
+# @router.post("/register/")
+# def register(email: str, password: str, db: Session = Depends(get_db)):
+#     existing_user = db.query(User).filter(User.email == email).first()
+#     if existing_user:
+#         raise HTTPException(status_code=400, detail="Email already registered")
+
+#     hashed_password = get_password_hash(password)
+#     new_user = User(email=email, hashed_password=hashed_password)
+#     db.add(new_user)
+#     db.commit()
+#     db.refresh(new_user)
+#     return {"message": "User registered successfully"}
+
+
+# Define a Pydantic model for request validation
+class RegisterRequest(BaseModel):
+    email: str
+    password: str
+
 @router.post("/register/")
-def register(email: str, password: str, db: Session = Depends(get_db)):
+def register(request: RegisterRequest, db: Session = Depends(get_db)):
+    # Access data from the request body
+    email = request.email
+    password = request.password
+
     existing_user = db.query(User).filter(User.email == email).first()
     if existing_user:
         raise HTTPException(status_code=400, detail="Email already registered")
@@ -47,6 +71,8 @@ def register(email: str, password: str, db: Session = Depends(get_db)):
     db.commit()
     db.refresh(new_user)
     return {"message": "User registered successfully"}
+
+
 
 @router.post("/login/")
 def login(email: str, password: str, db: Session = Depends(get_db)):
