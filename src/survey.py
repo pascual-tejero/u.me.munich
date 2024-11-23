@@ -3,6 +3,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from database import SessionLocal
 from models import SurveyResponse, User
+import recommendatios as Recommendations
 
 router = APIRouter()
 
@@ -68,7 +69,7 @@ def get_survey_responses(user_email: str, db: Session = Depends(get_db)):
     survey = db.query(SurveyResponse).filter(SurveyResponse.user_id == user.id).first()
     if not survey:
         raise HTTPException(status_code=404, detail="Survey not found")
-
+    
     return {
         "indoor_outdoor": survey.indoor_outdoor,
         "sport": survey.sport,
@@ -78,3 +79,30 @@ def get_survey_responses(user_email: str, db: Session = Depends(get_db)):
         "reading": survey.reading,
         "traveling": survey.traveling,
     }
+
+# @router.get("/recommendations/{user_email}")
+@router.get("/recommendations/{user_email}")
+def get_recommendations(user_email: str, db: Session = Depends(get_db)):
+    # Check if user exists
+    user = db.query(User).filter(User.email == user_email).first()
+    if not user:
+        raise HTTPException(status_code=400, detail="User not found")
+
+    # Fetch survey response
+    survey = db.query(SurveyResponse).filter(SurveyResponse.user_id == user.id).first()
+    if not survey:
+        raise HTTPException(status_code=404, detail="Survey not found")
+
+    # Generate recommendations
+    recommendation_model = Recommendations.RecommendationModel(
+        survey.indoor_outdoor,
+        sport=survey.sport,
+        cooking=survey.cooking,
+        music=survey.music,
+        conversations=survey.conversations,
+        reading=survey.reading,
+        traveling=survey.traveling,
+    )
+    recommendations = recommendation_model.recommend()
+
+    return {"recommendations": recommendations}

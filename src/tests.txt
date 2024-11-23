@@ -1,5 +1,7 @@
-register:
-http:127.0.0.1:8000/auth/register/ 
+uvicorn main:app --reload
+
+register: POST
+http://127.0.0.1:8000/auth/register/ 
     http header: Content-Type: application/json
     json
         {
@@ -7,17 +9,17 @@ http:127.0.0.1:8000/auth/register/
             "password": "pas",
             "confirm_password": "pas",
             "full_name": "pascual"
-     }
+        }
 
-log in: 
-http:127.0.0.1:8000/auth/login/ 
+log in: POST
+http://127.0.0.1:8000/auth/login/ 
 
     http header: Content-Type: application/json
     json
         {
             "email": "pascual@tej.ero",
             "password": "pas"
-     }
+        }
 
 
 survey: 
