@@ -15,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/verren5/me-u-munich/issues"
   },
-  "homepage": "https://github.com/verren5/me-u-munich#readme"
+  "homepage": "https://github.com/verren5/me-u-munich#readme",
+  "dependencies": {
+    "@ionic/vue": "^8.4.0",
+    "@ionic/vue-router": "^8.4.0",
+    "vue-router": "^4.4.5"
+  }
 }
