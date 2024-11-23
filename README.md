@@ -27,7 +27,7 @@ U.Me.Munich is an innovative application designed to bring people together throu
 ## How It Works
 
 1. **Register/Login**: Users sign up with their email and create a profile.
-2. **Complete the Survey**: Users answer a few questions about their preferences (e.g., indoor vs. outdoor activities, hobbies, etc.).
+2. **Complete the Survey**: Users select their activity preferences.
 3. **Get Recommendations**: Based on survey data, the app generates personalized activity suggestions using advanced AI.
 4. **Connect and Act**: Users explore suggestions and find companions to join them in these activities.
 
@@ -35,14 +35,16 @@ U.Me.Munich is an innovative application designed to bring people together throu
 
 ### Backend
 
-- **FastAPI**: A modern web framework for building APIs.
-- **SQLAlchemy**: For database interactions.
-- **PostgreSQL**: As the database of choice (or SQLite for local development).
-- **Google Generative AI (Gemini)**: For generating creative activity recommendations.
+- **FastAPI**
+- **SQLAlchemy**
+- **PostgreSQL**
+- **Google Generative AI (Gemini)**
 
 ### Frontend
 
-- **NativeScript**: Chosen for its capability to build cross-platform apps with a native experience.
+- **NativeScript**
+- **Vue**
+- **CSS**
 
 ### Hosting
 
@@ -54,8 +56,8 @@ U.Me.Munich is an innovative application designed to bring people together throu
 
 - Python 3.11+
 - A virtual environment manager (e.g., Conda, venv)
-- Google Cloud API Key for Generative AI
-- PostgreSQL or SQLite for database setup
+- Google Cloud API Key for Generative AI - Gemini
+- PostgreSQL for database setup
 
 ### Steps
 
@@ -73,13 +75,7 @@ U.Me.Munich is an innovative application designed to bring people together throu
     conda activate hackatum24  
     ```
 
-3. **Install Dependencies**
-
-    ```bash
-    pip install -r requirements.txt
-    ```
-
-4. **Configure Environment Variables**
+3. **Configure Environment Variables**
 
     Create a `.env` file and add:
 
@@ -88,7 +84,7 @@ U.Me.Munich is an innovative application designed to bring people together throu
     DATABASE_URL=sqlite:///./app.db  # Or PostgreSQL connection URL
     ```
 
-5. **Run the Application**
+4. **Run the Application**
 
     ```bash
     uvicorn main:app --reload
@@ -114,10 +110,12 @@ U.Me.Munich is an innovative application designed to bring people together throu
 
 - `GET /recommendations/{user_email}`: Get personalized activity recommendations. -->
 
-<!-- ## Contributors
+## Contributors (Team HackaTUM24)
 
-- **Malek Al Abed** (Backend Developer)
-- **Team HackaTUM24** -->
+- [**Cabrini Verren**](https://github.com/verren5)
+- [**Malek Al Abed**](https://github.com/Malek-AlAbed)
+- [**Mona Zhu**](https://github.com/MYZ1901)
+- [**Pascual Tejero Cervera**](https://github.com/pascual-tejero)
 
 ## Future Goals
 
