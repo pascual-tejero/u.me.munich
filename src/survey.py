@@ -61,7 +61,7 @@ def get_survey_responses(user_email: str, db: Session = Depends(get_db)):
         raise HTTPException(status_code=404, detail="Survey not found")
 
     return {
-        "sporty": survey.sport,
+        "sporty": survey.sporty,
         "party": survey.party,
         "nature": survey.nature,
         "cafe_hopping": survey.cafe_hopping,
