@@ -24,7 +24,8 @@ class SurveyRequest(BaseModel):
     reading: bool = False
     traveling: bool = False
 
-@router.post("/survey/")
+# @router.post("/survey/")
+@router.post("/")
 def submit_survey(request: SurveyRequest, user_email: str, db: Session = Depends(get_db)):
     # Check if user exists
     user = db.query(User).filter(User.email == user_email).first()
@@ -55,7 +56,8 @@ def submit_survey(request: SurveyRequest, user_email: str, db: Session = Depends
 
     return {"message": "Survey submitted successfully"}
 
-@router.get("/survey/{user_email}")
+# @router.get("/survey/{user_email}")
+@router.get("/{user_email}")
 def get_survey_responses(user_email: str, db: Session = Depends(get_db)):
     # Check if user exists
     user = db.query(User).filter(User.email == user_email).first()

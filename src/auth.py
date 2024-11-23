@@ -126,6 +126,9 @@ def get_db():
 class RegisterRequest(BaseModel):
     email: str
     password: str
+    confirm_password: str
+    full_name: str
+
 
 def get_password_hash(password):
     return pwd_context.hash(password)
@@ -151,3 +154,18 @@ def register(request: RegisterRequest, db: Session = Depends(get_db)):
     db.commit()
     db.refresh(new_user)
     return {"message": "User registered successfully, proceed to fill out the survey."}
+
+
+class LoginRequest(BaseModel):
+    email: str
+    password: str
+
+
+@router.post("/login/")
+def login(request: LoginRequest, db: Session = Depends(get_db)):
+    user = db.query(User).filter(User.email == request.email).first()
+    if not user or not verify_password(request.password, user.hashed_password):
+        raise HTTPException(status_code=401, detail="Invalid email or password")
+
+    access_token = create_access_token(data={"sub": user.email})
+    return {"access_token": access_token, "token_type": "bearer"}
