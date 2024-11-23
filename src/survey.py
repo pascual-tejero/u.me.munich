@@ -21,6 +21,7 @@ def get_db():
 
 # Request model for survey
 class SurveyRequest(BaseModel):
+
     sporty: bool = False
     party: bool = False
     nature: bool = False
@@ -61,6 +62,7 @@ def get_survey_responses(user_email: str, db: Session = Depends(get_db)):
         raise HTTPException(status_code=404, detail="Survey not found")
 
     return {
+
         "sporty": survey.sporty,
         "party": survey.party,
         "nature": survey.nature,
@@ -76,36 +78,36 @@ def get_survey_responses(user_email: str, db: Session = Depends(get_db)):
 
 
 
-@router.get("/recommendations/{user_email}")
-def get_recommendations(user_email: str, db: Session = Depends(get_db)):
-    # Check if user exists
-    user = db.query(User).filter(User.email == user_email).first()
-    if not user:
-        raise HTTPException(status_code=400, detail="User not found")
+# @router.get("/recommendations/{user_email}")
+# def get_recommendations(user_email: str, db: Session = Depends(get_db)):
+#     # Check if user exists
+#     user = db.query(User).filter(User.email == user_email).first()
+#     if not user:
+#         raise HTTPException(status_code=400, detail="User not found")
     
-    # Fetch survey response
-    survey = db.query(SurveyResponse).filter(SurveyResponse.user_id == user.id).first()
-    if not survey:
-        raise HTTPException(status_code=404, detail="Survey not found")
+#     # Fetch survey response
+#     survey = db.query(SurveyResponse).filter(SurveyResponse.user_id == user.id).first()
+#     if not survey:
+#         raise HTTPException(status_code=404, detail="Survey not found")
 
-    # Generate recommendations
-    recommendation_model = Recommendations.RecommendationModel(
-        sporty=survey.sporty,
-        party=survey.party,
-        nature=survey.nature,
-        cafe_hopping=survey.cafe_hopping,
-        cooking=survey.cooking,
-        cinema=survey.cinema,
-        walking=survey.walking,
-        reading=survey.reading,
-        gardening=survey.gardening,
-        conversation=survey.conversation,
-        go_crazy=survey.go_crazy,
+#     # Generate recommendations
+#     recommendation_model = Recommendations.RecommendationModel(
+#         sporty=survey.sporty,
+#         party=survey.party,
+#         nature=survey.nature,
+#         cafe_hopping=survey.cafe_hopping,
+#         cooking=survey.cooking,
+#         cinema=survey.cinema,
+#         walking=survey.walking,
+#         reading=survey.reading,
+#         gardening=survey.gardening,
+#         conversation=survey.conversation,
+#         go_crazy=survey.go_crazy,
         
-    )
-    recommendations = recommendation_model.recommend()
+#     )
+#     recommendations = recommendation_model.recommend()
 
-    return {"recommendations": recommendations}
+#     return {"recommendations": recommendations}
 
 
 
