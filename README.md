@@ -6,6 +6,10 @@
 
 U.Me.Munich is an innovative application designed to bring people together through shared activities, combating loneliness, and fostering a sense of companionship within the vibrant City of Munich. Developed as part of the HackaTUM 2024 challenge, this project aspires to make Munich a more inclusive and socially connected city.
 
+<p align="center">
+  <img src="assets/logo" alt="Logo" />
+</p>
+
 ## Features
 
 ### 🌟 User-Centric Features
