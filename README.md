@@ -1,6 +1,6 @@
 # U.Me.Munich
 
-**Connecting People, Fighting Loneliness**
+**Connecting People, Finding Companionship**
 
 ## Overview
 
