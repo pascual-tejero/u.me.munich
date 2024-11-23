@@ -1,13 +1,16 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-from openai import openai
+import openai
 from database import SessionLocal
 from models import User, SurveyResponse
+import os 
 
 router = APIRouter()
 
 # OpenAI Configuration
-openai.api_key = "your-openai-api-key"
+openai.api_key = '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'
+print("keykey", openai.api_key)
+
 
 def get_db():
     db = SessionLocal()
@@ -36,12 +39,20 @@ def generate_recommendations(survey: SurveyResponse):
     Be creative, especially if 'Other' is included!
     """
     
-    response = openai.Completion.create(
+    # response = openai.Completion.create(
+    #     engine="text-davinci-003",
+    #     prompt=prompt,
+    #     max_tokens=150,
+    #     temperature=0.8,
+    # )
+    response = openai.ChatCompletion.create(
+        # model = "gpt-3.5",
         engine="text-davinci-003",
-        prompt=prompt,
-        max_tokens=150,
-        temperature=0.8,
-    )
+        messages=[
+            {"role": "system", "content": "You are a helpful assistant."},
+            {"role": "user", "content": survey}
+            ]) 
+
     
     return response.choices[0].text.strip()
 

@@ -3,7 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from database import Base, engine
 from survey import router as survey_router
 from auth import router as auth_router
-from recommend import router as recommend_router
+from ai_recom import router as recommend_router
 
 
 app = FastAPI()
@@ -23,4 +23,4 @@ Base.metadata.create_all(bind=engine)
 # Include routers
 app.include_router(auth_router, prefix="/auth", tags=["Authentication"])
 app.include_router(survey_router, prefix="/survey", tags=["Survey"])
-app.include_router(recommend_router, prefix="/recommend", tags=["Recommendations"])
+app.include_router(recommend_router, prefix="/recommend", tags=["RecommendationsAI"])

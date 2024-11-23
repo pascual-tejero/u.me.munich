@@ -1,7 +1,11 @@
 class RecommendationModel:
-    def __init__(self, indoor_outdoor, sport=False, cooking=False, music=False, conversations=False, reading=False, traveling=False):
-        self.indoor_outdoor = indoor_outdoor.lower()
+    def __init__(self, indoor: bool, outdoor: bool, sport=False, cooking=False, music=False, conversations=False, reading=False, traveling=False):
+        self.indoor = indoor
+        self.outdoor = outdoor
+        
         self.preferences = {
+            "indoor": indoor,
+            "outdoor": outdoor, 
             "sport": sport,
             "cooking": cooking,
             "music": music,
@@ -14,7 +18,7 @@ class RecommendationModel:
         recommendations = []
         
         # Indoor Recommendations
-        if self.indoor_outdoor == "indoor":
+        if self.indoor:
             if self.preferences["cooking"]:
                 recommendations.append("Host a themed cooking night with friends.")
                 recommendations.append("Take an online class to master gourmet cooking techniques.")
@@ -39,7 +43,7 @@ class RecommendationModel:
                 recommendations.append("Discuss a book or an article with a friend or a group online.")
         
         # Outdoor Recommendations
-        elif self.indoor_outdoor == "outdoor":
+        elif self.outdoor:
             if self.preferences["sport"]:
                 recommendations.append("Try adventurous activities like rock climbing or paddleboarding.")
                 recommendations.append("Join a local recreational league for your favorite sport.")

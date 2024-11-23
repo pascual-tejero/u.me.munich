@@ -155,7 +155,6 @@ def register(request: RegisterRequest, db: Session = Depends(get_db)):
     db.refresh(new_user)
     return {"message": "User registered successfully, proceed to fill out the survey."}
 
-
 class LoginRequest(BaseModel):
     email: str
     password: str
