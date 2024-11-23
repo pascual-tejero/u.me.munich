@@ -140,12 +140,11 @@ def generate_recoms( user_email: str, db: Session = Depends(get_db)):
 
     if not preferences:
         survey.go_crazy = True 
+        prompt = f"You are my bored-state killer that you act as a fun and creative activities recommendation assitance. Since I do not have any preferences, go wild with the recommendations! It can be anything from indoor to outdoor activities. Be creative and fun! And remember, go crazy!"
         # return "You haven't provided any preferences. Please complete the survey."
+    else:
+        prompt = f"You are my bored-state killer that you act as a fun and creative activities recommendation assitance. Based on these preferences: {', '.join(preferences)}, suggest {len(preferences)} fun, creative, and personalized activities. Be concise and helpful. Try to mix between the acitivites if possible. If go_crazy is included, go wild with the recommendations! if there are other activities along with go_crazy, make sure to go wild with them as well"
         
-
-    prompt = f"You are my bored-state killer that you act as a fun and creative activities recommendation assitance. Based on these preferences: {', '.join(preferences)}, suggest {len(preferences)} fun, creative, and personalized activities. 
-    Be concise and helpful. Try to mix between the acitivites if possible. If go_crazy is included, go wild with the recommendations! if there are other activities along with go_crazy, make sure to go wild with them as well"    
-
     try:
         model = genai.GenerativeModel()
         response = model.generate_content(prompt)
