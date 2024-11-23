@@ -3,7 +3,6 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from database import SessionLocal
 from models import SurveyResponse, User
-import recommendations_class as Recommendations
 import google.generativeai as genai
 import os 
 
@@ -75,40 +74,6 @@ def get_survey_responses(user_email: str, db: Session = Depends(get_db)):
         "conversation": survey.conversation,
         "go_crazy": survey.go_crazy,
     }
-
-
-
-# @router.get("/recommendations/{user_email}")
-# def get_recommendations(user_email: str, db: Session = Depends(get_db)):
-#     # Check if user exists
-#     user = db.query(User).filter(User.email == user_email).first()
-#     if not user:
-#         raise HTTPException(status_code=400, detail="User not found")
-    
-#     # Fetch survey response
-#     survey = db.query(SurveyResponse).filter(SurveyResponse.user_id == user.id).first()
-#     if not survey:
-#         raise HTTPException(status_code=404, detail="Survey not found")
-
-#     # Generate recommendations
-#     recommendation_model = Recommendations.RecommendationModel(
-#         sporty=survey.sporty,
-#         party=survey.party,
-#         nature=survey.nature,
-#         cafe_hopping=survey.cafe_hopping,
-#         cooking=survey.cooking,
-#         cinema=survey.cinema,
-#         walking=survey.walking,
-#         reading=survey.reading,
-#         gardening=survey.gardening,
-#         conversation=survey.conversation,
-#         go_crazy=survey.go_crazy,
-        
-#     )
-#     recommendations = recommendation_model.recommend()
-
-#     return {"recommendations": recommendations}
-
 
 
 
