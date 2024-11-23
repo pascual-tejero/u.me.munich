@@ -12,7 +12,7 @@
           </ion-header>
   
           <div id="container">
-            <strong>I am feeling...</strong>
+            <h1>I am feeling...</h1>
             <ion-item>
                 <ion-checkbox v-model="answers.sporty">Sporty</ion-checkbox>
             </ion-item>
@@ -40,16 +40,23 @@
             <ion-item>
                 <ion-checkbox v-model="answers.drinks">Drinks</ion-checkbox>
             </ion-item>
+            <ion-item>
+                <ion-checkbox v-model="answers.conversation">Conversation</ion-checkbox>
+            </ion-item>
+            <ion-item>
+                <ion-checkbox v-model="answers.gocrazy">Go Crazy</ion-checkbox>
+            </ion-item>
+          <ion-button class="button" shape="round" @click="submitAnswers">Submit</ion-button>
           </div>
-          <ion-button @click="submitAnswers">Submit</ion-button>
         </ion-content>
       </ion-page>
     </div>
   </template>
   
   <script setup lang="ts">
-  import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonCheckbox, IonItem, ref } from '@ionic/vue';
-  import axios from 'axios';
+  import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonCheckbox, IonItem } from '@ionic/vue';
+  import { ref } from 'vue';
+  //import axios from 'axios';
 
   const answers = ref({
   sporty: false,
@@ -61,12 +68,15 @@
   walking: false,
   gardening: false,
   drinks: false,
+  conversation: false,
+  gocrazy: false
 });
 
+/*
 const submitAnswers = async () => {
   try {
     // Send the collected answers to the backend
-    const response = await axios.post('', {
+    const response = await axios.post('API', {
       answers: answers.value
     });
 
@@ -76,6 +86,7 @@ const submitAnswers = async () => {
     console.error('Error submitting answers:', error);
   }
 };
+*/
 
   </script>
   
@@ -122,7 +133,7 @@ const submitAnswers = async () => {
   /* Container inside the "screen" */
   #container {
     text-align: center;
-    padding: 16px;
+    padding-top:5rem ;
   }
   
   #container strong {
@@ -143,7 +154,11 @@ const submitAnswers = async () => {
     color: #007aff;
     text-decoration: none;
   }
-  
+  .button {
+    --background: rgb(255, 94,53);
+    text-align: center;
+    color: white;
+  }
   ion-header {
     position: sticky;
     top: 0;
@@ -155,5 +170,6 @@ const submitAnswers = async () => {
   ion-title {
     font-size: 16px;
   }
+
   </style>
   
