@@ -14,14 +14,14 @@
             <ion-card>
               <ion-card-header>
                 <ion-card-subtitle>That means your vibe is...</ion-card-subtitle>
-                <ion-card-title>{{ mood }}</ion-card-title>
+                <ion-card-title>Urban Ninja Warrior Challenge (Go Crazy & Sporty)</ion-card-title>
               </ion-card-header>
               <ion-card-content>
-                Here's a description about the mood you chose.
+                Combine your sporty side with a \"Go Crazy\" adrenaline rush by tackling Munich's cityscape like an urban ninja warrior!  This isn't a formal event, but a self-guided adventure.\n* *Execution:* Start at the Olympic Park (Olympiapark), using its various structures – stairs, ramps, walls – as obstacles.  Film your progress, turning it into a fun video challenge.  Next, venture into the city center, incorporating creatively chosen spots like the steps of the Deutsches Museum or the Englischer Garten's bridges.  The goal?  Record a dynamic, playful video showcasing your skills and Munich's urban landscape.  (Safety first – avoid dangerous stunts and respect public spaces).\n\n\n*2.  Indoor Rock Climbing & Afterwards, a \"Crazy\" Bavarian Night (Sporty & Go Crazy):\n\n *Concept:*  Get your sporty fix with some indoor rock climbing, then ramp up the craziness with a truly unique Bavarian experience.\n* *Execution:* Head to Boulderwelt München (a popular indoor climbing gym) for an afternoon of exhilarating climbing.  Then, ditch the traditional beer garden for a \"Go Crazy\" twist: find a quirky, less-touristy Bavarian pub (check local listings for live music or themed nights) and embrace the local culture with full gusto. Maybe try a  \"Goaßmaß\" (a large mug of beer) if you're feeling particularly bold! (Remember to drink responsibly).\n\n\n*Note:*  For specific events happening within the next day, check local event listings on websites like muenchen.de or Timeout Munich.  Look for keywords like \"climbing,\" \"events,\" \"concerts,\" or \"parties\" to find something matching your preferences."
               </ion-card-content>
             </ion-card>
   
-            <ion-button shape="round" class="button" href='./Survey'>Events recommendation</ion-button>  
+            <ion-button shape="round" class="button" href='./feed'>Events recommendation</ion-button>  
           </div>
         </ion-content>
       </ion-page>
@@ -29,12 +29,12 @@
   </template>
   
   <script setup lang="ts">
-  import { IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonCheckbox, IonItem, Computed, watchEffect} from '@ionic/vue';
-  import { ref } from 'vue' ;
+  import { IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonContent, IonHeader, IonPage, IonTitle, IonToolbar} from '@ionic/vue';
+  import { ref, computed } from 'vue' ;
 
-  const route = useRoute();
-const answers = ref(route.state?.answers || {});
-
+ // const route = useRoute();
+//const answers = ref(route.state?.answers || {});
+/*
 const mood = computed(() => {
   // Determine mood based on the selected answers
   if (answers.value.sporty) return "Sporty";
@@ -50,6 +50,7 @@ const mood = computed(() => {
   if (answers.value.gocrazy) return "Go Crazy";
   return "Unknown";
 });
+*/
 
   </script>
   
@@ -95,8 +96,8 @@ const mood = computed(() => {
   
   /* Container inside the "screen" */
   #container {
+    padding-top: 5rem;
     text-align: center;
-    padding-top:20rem ;
     justify-content: center;
     justify-items: center;
     align-items: center;

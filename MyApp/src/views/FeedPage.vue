@@ -30,22 +30,22 @@
             <ion-tabs>
       <ion-router-outlet></ion-router-outlet>
       <ion-tab-bar slot="bottom">
-        <ion-tab-button tab="home" href="/home">
+        <ion-tab-button tab="home" href="/feed">
             <img src="/src/assets/today-outline.svg">
           <ion-label>Events</ion-label>
         </ion-tab-button>
 
-        <ion-tab-button tab="radio" href="/radio">
+        <ion-tab-button tab="radio" href="/survey">
           <img src="/src/assets/U-Me-Munich-Logo.png">
         </ion-tab-button>
 
-        <ion-tab-button tab="library" href="/library">
-            <img src="/src/assets/people-outline.svg">
+        <ion-tab-button tab="library" href="/sync">
+            <img width=50px src="/src/assets/people-outline.svg">
           <ion-label>Sync & Share</ion-label>
         </ion-tab-button>
 
-        <ion-tab-button tab="search" href="/search">
-          <ion-icon :icon="Profile" />
+        <ion-tab-button tab="search" href="/profile">
+        <img src="/src/assets/accessibility-outline.svg">
           <ion-label>Profile</ion-label>
         </ion-tab-button>
       </ion-tab-bar>
@@ -70,7 +70,6 @@ import {
   IonTabs, IonRouterOutlet, IonTabBar, IonTabButton, IonIcon
 } from "@ionic/vue";
 import { defineComponent, ref } from "vue";
-import { playCircle, people-outline, profile } from 'ionicons/icons';
 
 export default defineComponent({
   components: {
@@ -245,4 +244,10 @@ export default defineComponent({
   ion-title {
     font-size: 16px;
   }
+
+  ion-tab-button img {
+  width: 24px; /* Adjust this value to control the size */
+  height: 24px; /* Adjust this value to control the size */
+  object-fit: contain; /* Ensures the image maintains its aspect ratio */
+}
   </style>

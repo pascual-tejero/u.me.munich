@@ -21,9 +21,8 @@
               class="button" 
               shape="round" 
               :disabled="isLoading" 
-              @click="submitAnswers">
-              <span v-if="!isLoading">Submit</span>
-              <ion-spinner v-else></ion-spinner>
+              href="./surveyanswer">
+              Submit
             </ion-button>
           </div>
         </ion-content>
