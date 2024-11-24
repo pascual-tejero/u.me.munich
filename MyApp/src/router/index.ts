@@ -6,6 +6,7 @@ import SurveyAnswerPage from '@/views/SurveyAnswerPage.vue';
 import SignUpPage from '../views/SignUpPage.vue';
 import SyncSharePage from '@/views/SyncSharePage.vue';
 import ChatPage from '@/views/ChatPage.vue';
+import ProfilePage from '@/views/ProfilePage.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -41,6 +42,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/chat',
     name: 'Chat',
     component: ChatPage
+  },
+  {
+    path: '/profile',
+    name: 'Profile',
+    component: ProfilePage
   },
 ];
 
