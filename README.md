@@ -1,4 +1,4 @@
-# U.Me.Munich
+# U,Me,Munich
 
 **Connecting People, Finding Companionship**
 
@@ -52,9 +52,10 @@ U.Me.Munich is an innovative application designed to bring people together throu
 - **TypeScript**
 - **Vue**
 - **CSS**
+- **Ionic**
 
 ### Hosting
-
+- Ionic Serve (to serve the ionic framework)
 - Local development with potential integration for Google Cloud deployment.
 
 ## Setup and Installation
@@ -71,8 +72,8 @@ U.Me.Munich is an innovative application designed to bring people together throu
 1. **Clone the Repository**
 
     ```bash
-    git clone https://github.com/your-repo/U.Me.Munich.git 
-    cd U.Me.Munich
+    git clone https://github.com/verren5/me-u-munich.git
+    cd U-Me-Munich
     ```
 
 2. **Set Up the Environment**
