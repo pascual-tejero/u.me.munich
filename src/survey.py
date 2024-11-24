@@ -51,6 +51,7 @@ def submit_survey(user_email: str, survey: SurveyRequest, db: Session = Depends(
 @router.get("/{user_email}")
 def get_survey_responses(user_email: str, db: Session = Depends(get_db)):
     # Check if user exists
+
     user = db.query(User).filter(User.email == user_email).first()
     if not user:
         raise HTTPException(status_code=400, detail="User not found")
@@ -107,10 +108,9 @@ def generate_recoms( user_email: str, db: Session = Depends(get_db)):
 
     if not preferences:
         survey.go_crazy = True 
-        prompt = f"You are my bored-state killer that you act as a fun and creative activities recommendation assitance. Since I do not have any preferences, go wild with the recommendations! It can be anything from indoor to outdoor activities. Be creative and fun! And remember, go crazy!"
-        # return "You haven't provided any preferences. Please complete the survey."
+        prompt = "You are my boredom-busting assistant, a fun and creative activities guru! I have no specific preferences, so go wild with your recommendations! Think outside the box and suggest anything from thrilling adventures to quirky indoor activities. Be imaginative, bold, and fun. And remember—go crazy!"
     else:
-        prompt = f"You are my bored-state killer that you act as a fun and creative activities recommendation assitance. Based on these preferences: {', '.join(preferences)}, suggest {len(preferences)} fun, creative, and personalized activities. Be concise and helpful. Try to mix between the acitivites if possible. If go_crazy is included, go wild with the recommendations! if there are other activities along with go_crazy, make sure to go wild with them as well"
+        prompt = f"You are my boredom-busting and loneliness-curing assistant, here to recommend fun and creative activities! Based on these preferences: {', '.join(preferences)}, suggest {len(preferences)} personalized and engaging activities tailored for people in Munich. Offer a diverse mix of ideas that resonate with these interests, blending indoor and outdoor options. Where possible, combine preferences for unique and exciting experiences. Include specific locations, events, or highlights in Munich, especially those happening within the next day. If 'Go Crazy' is included, push the boundaries with bold, unconventional suggestions, mixing them with other preferences for an adventurous twist. Keep your suggestions concise, engaging, and packed with fun!"
         
     try:
         model = genai.GenerativeModel()

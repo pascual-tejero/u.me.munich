@@ -1,0 +1,12 @@
+pydantic
+fastapi
+sqlalchemy
+google
+passlib
+google-generativeai
+google 
+bcrypt
+uvicorn
+python-jose
+psycopg2-binary
+
