@@ -91,7 +91,8 @@ const handleLogin = () => {
     // Simulate successful login
     console.log('Logged in with', email.value);
     // Redirect logic here, for example:
-    // router.push('/home'); (if using Vue Router)
+    router.push({ path:'/survey/${email.value}', state: {email: email.value} }); 
+    
   } else {
     errorMessage.value = 'Please fill in both fields';
   }

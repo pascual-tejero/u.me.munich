@@ -1,34 +1,54 @@
 <template>
     <div class="iphone-frame">
       <ion-page>
-        <ion-header :translucent="true">
-        </ion-header>
+        <ion-header :translucent="true"></ion-header>
   
         <ion-content :fullscreen="true">
           <ion-header collapse="condense">
             <ion-toolbar>
-            <ion-title size="large">U, Me, Munich</ion-title>
+              <ion-title size="large">U, Me, Munich</ion-title>
             </ion-toolbar>
-            </ion-header>
+          </ion-header>
+  
           <div id="container">
-                <ion-card>
-                    <ion-card-header>
-                        <ion-card-subtitle>That means your vibe is...</ion-card-subtitle>
-                            <ion-card-title> Sporty</ion-card-title>
-                    </ion-card-header>
-                    <ion-card-content>Description about the mood</ion-card-content>
-                </ion-card>
-                <ion-button shape="round" class="button" href='./Survey'>Events recommendation</ion-button>  
+            <ion-card>
+              <ion-card-header>
+                <ion-card-subtitle>That means your vibe is...</ion-card-subtitle>
+                <ion-card-title>{{ mood }}</ion-card-title>
+              </ion-card-header>
+              <ion-card-content>
+                Here's a description about the mood you chose.
+              </ion-card-content>
+            </ion-card>
+  
+            <ion-button shape="round" class="button" href='./Survey'>Events recommendation</ion-button>  
           </div>
-          </ion-content>
+        </ion-content>
       </ion-page>
     </div>
   </template>
   
   <script setup lang="ts">
-  import { IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonCheckbox, IonItem } from '@ionic/vue';
+  import { IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonCheckbox, IonItem, Computed, watchEffect, Ref } from '@ionic/vue';
 
+  const route = useRoute();
+const answers = ref(route.state?.answers || {});
 
+const mood = computed(() => {
+  // Determine mood based on the selected answers
+  if (answers.value.sporty) return "Sporty";
+  if (answers.value.party) return "Party";
+  if (answers.value.nature) return "Nature";
+  if (answers.value.cafehopping) return "Cafe Hopping";
+  if (answers.value.cooking) return "Cooking";
+  if (answers.value.cinema) return "Cinema";
+  if (answers.value.walking) return "Walking";
+  if (answers.value.gardening) return "Gardening";
+  if (answers.value.drinks) return "Drinks";
+  if (answers.value.conversation) return "Conversation";
+  if (answers.value.gocrazy) return "Go Crazy";
+  return "Unknown";
+});
 
   </script>
   

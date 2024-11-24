@@ -16,9 +16,9 @@ const routes: Array<RouteRecordRaw> = [
     component: HomePage, // Login/Register
   },
   {
-    path: '/survey',
+    path: '/survey/',
     name: 'Survey',
-    component: SurveyPage, // Survey Page
+    component: SurveyPage,
   },
   {
     path: '/surveyanswer',
