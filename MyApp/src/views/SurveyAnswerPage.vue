@@ -29,7 +29,8 @@
   </template>
   
   <script setup lang="ts">
-  import { IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonCheckbox, IonItem, Computed, watchEffect, Ref } from '@ionic/vue';
+  import { IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonCheckbox, IonItem, Computed, watchEffect} from '@ionic/vue';
+  import { ref } from 'vue' ;
 
   const route = useRoute();
 const answers = ref(route.state?.answers || {});
