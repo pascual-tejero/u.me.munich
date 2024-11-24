@@ -37,6 +37,9 @@ U.Me.Munich is an innovative application designed to bring people together throu
 2. **Complete the Survey**: Users select their activity preferences.
 3. **Get Recommendations**: Based on survey data, the app generates personalized activity suggestions using advanced AI.
 4. **Connect and Act**: Users explore suggestions and find companions to join them in these activities.
+5. **Hosts Events**: Host your own events!
+6. **Promote your business and become a sponsor**: Register your business and give points to the users that meet up at your business place!
+7. **Redeem your points**: Get discount at museums, cafes, transport, or any other activities!!
 
 ## Technology Stack
 
@@ -53,6 +56,7 @@ U.Me.Munich is an innovative application designed to bring people together throu
 - **Vue**
 - **CSS**
 - **Ionic**
+- **Node.js**
 
 ### Hosting
 - Ionic Serve (to serve the ionic framework)
@@ -64,6 +68,8 @@ U.Me.Munich is an innovative application designed to bring people together throu
 
 - Python 3.11+
 - A virtual environment manager (e.g., Conda, venv)
+- Ionic Framework
+- Node.js
 - Google Cloud API Key for Generative AI - Gemini
 - PostgreSQL for database setup
 
