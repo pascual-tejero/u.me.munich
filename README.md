@@ -42,7 +42,7 @@ U.Me.Munich is an innovative application designed to bring people together throu
 
 ### Frontend
 
-- **NativeScript**
+- **TypeScript**
 - **Vue**
 - **CSS**
 
