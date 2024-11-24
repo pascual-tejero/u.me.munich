@@ -4,6 +4,9 @@ import HomePage from '../views/HomePage.vue';
 import SurveyPage from '../views/SurveyPage.vue'; 
 import SurveyAnswerPage from '@/views/SurveyAnswerPage.vue';
 import SignUpPage from '../views/SignUpPage.vue';
+import SyncSharePage from '@/views/SyncSharePage.vue';
+import ChatPage from '@/views/ChatPage.vue';
+import ProfilePage from '@/views/ProfilePage.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -16,9 +19,9 @@ const routes: Array<RouteRecordRaw> = [
     component: HomePage, // Login/Register
   },
   {
-    path: '/survey',
+    path: '/survey/',
     name: 'Survey',
-    component: SurveyPage, // Survey Page
+    component: SurveyPage,
   },
   {
     path: '/surveyanswer',
@@ -29,6 +32,21 @@ const routes: Array<RouteRecordRaw> = [
     path: '/signup',
     name: 'SignUp',
     component: SignUpPage,
+  },
+  {
+    path: '/sync',
+    name: 'Sync',
+    component: SyncSharePage,
+  },
+  {
+    path: '/chat',
+    name: 'Chat',
+    component: ChatPage
+  },
+  {
+    path: '/profile',
+    name: 'Profile',
+    component: ProfilePage
   },
 ];
 

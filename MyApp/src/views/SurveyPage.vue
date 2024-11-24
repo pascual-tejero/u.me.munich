@@ -1,8 +1,7 @@
 <template>
     <div class="iphone-frame">
       <ion-page>
-        <ion-header :translucent="true">
-        </ion-header>
+        <ion-header :translucent="true"></ion-header>
   
         <ion-content :fullscreen="true">
           <ion-header collapse="condense">
@@ -13,40 +12,19 @@
   
           <div id="container">
             <h1>I am feeling...</h1>
-            <ion-item>
-                <ion-checkbox v-model="answers.sporty">Sporty</ion-checkbox>
-            </ion-item>
-            <ion-item>
-                <ion-checkbox v-model="answers.party">Party</ion-checkbox>
-            </ion-item>
-            <ion-item>
-                <ion-checkbox v-model="answers.nature">Nature</ion-checkbox>
-            </ion-item>
-            <ion-item>
-                <ion-checkbox v-model="answers.cafehopping">Cafe Hopping</ion-checkbox>
-            </ion-item>
-            <ion-item>
-                <ion-checkbox v-model="answers.cooking">Cooking</ion-checkbox>
-            </ion-item>
-            <ion-item>
-                <ion-checkbox v-model="answers.cinema">Cinema</ion-checkbox>
-            </ion-item>
-            <ion-item>
-                <ion-checkbox v-model="answers.walking">Walking</ion-checkbox>
-            </ion-item>
-            <ion-item>
-                <ion-checkbox v-model="answers.gardening">Gardening</ion-checkbox>
-            </ion-item>
-            <ion-item>
-                <ion-checkbox v-model="answers.drinks">Drinks</ion-checkbox>
-            </ion-item>
-            <ion-item>
-                <ion-checkbox v-model="answers.conversation">Conversation</ion-checkbox>
-            </ion-item>
-            <ion-item>
-                <ion-checkbox v-model="answers.gocrazy">Go Crazy</ion-checkbox>
-            </ion-item>
-          <ion-button class="button" shape="round" @click="submitAnswers">Submit</ion-button>
+            <div class="checkbox-list">
+              <ion-item v-for="(label, key) in options" :key="key">
+                <ion-checkbox v-model="answers[key]">{{ label }}</ion-checkbox>
+              </ion-item>
+            </div>
+            <ion-button 
+              class="button" 
+              shape="round" 
+              :disabled="isLoading" 
+              @click="submitAnswers">
+              <span v-if="!isLoading">Submit</span>
+              <ion-spinner v-else></ion-spinner>
+            </ion-button>
           </div>
         </ion-content>
       </ion-page>
@@ -54,41 +32,61 @@
   </template>
   
   <script setup lang="ts">
-  import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonCheckbox, IonItem } from '@ionic/vue';
-  import { ref } from 'vue';
-  //import axios from 'axios';
+import { useRouter } from 'vue-router';
+import { ref } from 'vue';
+import { IonCheckbox, IonItem, IonButton, IonContent, IonPage, IonTitle, IonToolbar, IonHeader, IonSpinner } from '@ionic/vue';
+import axios from 'axios';
 
-  const answers = ref({
-  sporty: false,
-  party: false,
-  nature: false,
-  cafehopping: false,
-  cooking: false,
-  cinema: false,
-  walking: false,
-  gardening: false,
-  drinks: false,
-  conversation: false,
-  gocrazy: false
-});
+const router = useRouter();
+const email = ref(router.currentRoute.value.query.email || '');  // Retrieve email from query params
 
-/*
+// Survey options
+const options = {
+  sporty: "Sporty",
+  party: "Party",
+  nature: "Nature",
+  cafehopping: "Cafe Hopping",
+  cooking: "Cooking",
+  cinema: "Cinema",
+  walking: "Walking",
+  gardening: "Gardening",
+  drinks: "Drinks",
+  conversation: "Conversation",
+  gocrazy: "Go Crazy"
+};
+
+const answers = ref(
+  Object.fromEntries(Object.keys(options).map((key) => [key, false]))
+);
+
+const isLoading = ref(false);
+
 const submitAnswers = async () => {
-  try {
-    // Send the collected answers to the backend
-    const response = await axios.post('API', {
-      answers: answers.value
-    });
+  const apiEndpoint = `http://localhost:8100/surveyanswer/`;
 
-    // Handle the response from the AI API
-    console.log(response.data);
+  try {
+    isLoading.value = true;
+    // Send answers to the backend
+    const response = await axios.post(apiEndpoint, answers.value);
+
+    // Handle backend response
+    console.log(response.data.message);
+    alert("Survey submitted successfully!");
+
+    // Navigate to SurveyAnswer page, passing answers in route state
+    router.push({ 
+      path: '/surveyanswer', 
+      state: { answers: answers.value } 
+    });
   } catch (error) {
-    console.error('Error submitting answers:', error);
+    console.error("Error submitting answers:", error);
+    alert("Failed to submit survey. Please try again later.");
+  } finally {
+    isLoading.value = false;
   }
 };
-*/
+</script>
 
-  </script>
   
   <style scoped>
   /* Body to center the iPhone frame */
@@ -100,10 +98,11 @@ const submitAnswers = async () => {
     height: 100vh;
     background-color: #f0f0f5;
   }
-
+  
   .custom-line-break {
-  height: 20px; /* Adjust the height to set the space between elements */
-}
+    height: 20px; /* Adjust the height to set the space between elements */
+  }
+  
   /* Main iPhone container */
   .iphone-frame {
     position: relative;
@@ -133,7 +132,13 @@ const submitAnswers = async () => {
   /* Container inside the "screen" */
   #container {
     text-align: center;
-    padding-top:5rem ;
+    padding-top: 5rem;
+  }
+  
+  .checkbox-list {
+    text-align: left;
+    margin: 0 auto;
+    width: 90%;
   }
   
   #container strong {
@@ -154,11 +159,13 @@ const submitAnswers = async () => {
     color: #007aff;
     text-decoration: none;
   }
+  
   .button {
-    --background: rgb(255, 94,53);
+    --background: rgb(255, 94, 53);
     text-align: center;
     color: white;
   }
+  
   ion-header {
     position: sticky;
     top: 0;
@@ -170,6 +177,4 @@ const submitAnswers = async () => {
   ion-title {
     font-size: 16px;
   }
-
   </style>
-  
