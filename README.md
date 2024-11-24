@@ -17,12 +17,19 @@ U.Me.Munich is an innovative application designed to bring people together throu
 - **Personalized Survey**: Users complete a short survey about their interests and preferences (e.g., indoor/outdoor activities, cooking, music, etc.).
 - **Activity Recommendations**: Based on survey responses, users receive tailored suggestions for fun and creative activities.
 - **Companionship Matching**: The app helps users find others with similar interests for shared activities.
+- Hosting events for those who like to organize!
 
 ### 🧠 Technology-Driven Features
 
 - **AI-Powered Recommendations**: Using Google's Gemini AI, the app generates personalized and creative activity suggestions.
 - **Secure User Management**: Built with FastAPI for secure registration, login, and data management.
 - **Real-Time Engagement**: Users can explore new hobbies and connect with like-minded people in real-time.
+
+### Become A Sponsor or Redeem Your Points Features
+- Promoting government activities for a meet up location
+- If you have businesses you can promote your businesses and be the sponsor if they meet up in your place!
+- Users can redeem their points to have discounts or free access from sponsors!
+
 
 ## How It Works
 
