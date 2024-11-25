@@ -6,7 +6,7 @@ from models import SurveyResponse, User
 import google.generativeai as genai
 import os 
 
-genai.configure(api_key="AIzaSyARY6n7Vd-EEqRwjEY0IpNahNv0WXqSPvM")
+genai.configure(api_key="YOUT_GOOGLE_API_KEY")
 
 router = APIRouter()
 
@@ -113,7 +113,7 @@ def generate_recoms( user_email: str, db: Session = Depends(get_db)):
         prompt = f"You are my boredom-busting and loneliness-curing assistant, here to recommend fun and creative activities! Based on these preferences: {', '.join(preferences)}, suggest {len(preferences)} personalized and engaging activities tailored for people in Munich. Offer a diverse mix of ideas that resonate with these interests, blending indoor and outdoor options. Where possible, combine preferences for unique and exciting experiences. Include specific locations, events, or highlights in Munich, especially those happening within the next day. If 'Go Crazy' is included, push the boundaries with bold, unconventional suggestions, mixing them with other preferences for an adventurous twist. Keep your suggestions concise, engaging, and packed with fun!"
         
     try:
-        model = genai.GenerativeModel()
+        model = genai.GenerativeModel('models/gemini-1.5-flash')
         response = model.generate_content(prompt)
         return response.text
     except Exception as e:
