@@ -21,15 +21,40 @@
               class="button" 
               shape="round" 
               :disabled="isLoading" 
-              @click="submitAnswers">
-              <span v-if="!isLoading">Submit</span>
-              <ion-spinner v-else></ion-spinner>
+              href="./surveyanswer">
+              Submit
             </ion-button>
           </div>
         </ion-content>
+  
+        <!-- Tabs Section -->
+        <ion-tabs>
+          <ion-tab-bar slot="bottom">
+            <ion-tab-button tab="feed" @click="navigateTo('feed')">
+              <ion-icon name="newspaper-outline"></ion-icon>
+              <ion-label>Feed</ion-label>
+            </ion-tab-button>
+  
+            <ion-tab-button tab="listen" @click="navigateTo('listen')">
+              <ion-icon name="musical-notes-outline"></ion-icon>
+              <ion-label>Listen</ion-label>
+            </ion-tab-button>
+  
+            <ion-tab-button tab="search" @click="navigateTo('search')">
+              <ion-icon name="search-outline"></ion-icon>
+              <ion-label>Search</ion-label>
+            </ion-tab-button>
+  
+            <ion-tab-button tab="profile" @click="navigateTo('profile')">
+              <ion-icon name="person-outline"></ion-icon>
+              <ion-label>Profile</ion-label>
+            </ion-tab-button>
+          </ion-tab-bar>
+        </ion-tabs>
       </ion-page>
     </div>
   </template>
+  
   
   <script setup lang="ts">
 import { useRouter } from 'vue-router';
@@ -85,7 +110,12 @@ const submitAnswers = async () => {
     isLoading.value = false;
   }
 };
+
+const navigateTo = (tab: string) => {
+  router.push({ path: `/${tab}` });
+};
 </script>
+
 
   
   <style scoped>
@@ -99,6 +129,16 @@ const submitAnswers = async () => {
     background-color: #f0f0f5;
   }
   
+  ion-tab-bar {
+  --background: #f8f8f8;
+  --color-selected: #ff5e35;
+  --color: #8c8c8c;
+}
+
+ion-tab-button {
+  --color: inherit;
+}
+
   .custom-line-break {
     height: 20px; /* Adjust the height to set the space between elements */
   }
