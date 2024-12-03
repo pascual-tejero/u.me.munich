@@ -97,16 +97,15 @@ U.Me.Munich is an innovative application designed to bring people together throu
 
 4.**Run the Application** 
 4.1 backend
-
-    ```bash
-    uvicorn main:app --reload
-    ```
+```bash
+uvicorn main:app --reload
+```
 4.1 Frontend
 
-    ```bash
-    ionic serve
-    ```
-    (By default at [http://localhost:8100](http://localhost:8100)
+```bash
+ionic serve
+```
+(By default at [http://localhost:8100](http://localhost:8100)
     
 6. **Test the Endpoints**
 
