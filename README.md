@@ -11,15 +11,12 @@ U.Me.Munich is an innovative application designed to bring people together throu
 </p>
 
 ## Features
-
-### 🌟 User-Centric Features
-
 - **Personalized Survey**: Users complete a short survey about their interests and preferences (e.g., indoor/outdoor activities, cooking, music, etc.).
 - **Activity Recommendations**: Based on survey responses, users receive tailored suggestions for fun and creative activities.
 - **Companionship Matching**: The app helps users find others with similar interests for shared activities.
 - Hosting events for those who like to organize!
 
-### 🧠 Technology-Driven Features
+### With AI
 
 - **AI-Powered Recommendations**: Using Google's Gemini AI, the app generates personalized and creative activity suggestions.
 - **Secure User Management**: Built with FastAPI for secure registration, login, and data management.
@@ -98,12 +95,19 @@ U.Me.Munich is an innovative application designed to bring people together throu
     DATABASE_URL=sqlite:///./app.db  # Or PostgreSQL connection URL
     ```
 
-4. **Run the Application**
+4.**Run the Application** 
+4.1 backend
 
     ```bash
     uvicorn main:app --reload
     ```
+4.1 Frontend
 
+    ```bash
+    ionic serve
+    ```
+    (By default at [http://localhost:8100](http://localhost:8100)
+    
 6. **Test the Endpoints**
 
     Open [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs) for the FastAPI Swagger documentation.
@@ -136,7 +140,6 @@ U.Me.Munich is an innovative application designed to bring people together throu
 - **Expand Activity Database**: Add more activity categories and suggestions tailored for diverse interests.
 - **Companion Matching**: Introduce a feature to connect users with similar preferences.
 - **Mobile App Launch**: Build and deploy the NativeScript-powered frontend for iOS and Android.
-- **Localization**: Translate the app into German for broader accessibility.
 
 ## Acknowledgments
 
