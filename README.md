@@ -1,4 +1,4 @@
-# U,Me,Munich
+# U.Me.Munich
 
 **Connecting People, Finding Companionship**
 
